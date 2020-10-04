@@ -18,4 +18,4 @@ class DubboServiceInfoSerializer(serializers.Serializer):
 class DubboInvokeSerializer(serializers.Serializer):
     service = serializers.CharField(required=True, write_only=True, help_text='接口完整路径')
     method = serializers.CharField(required=True, write_only=True, help_text='请求方法名')
-    params = serializers.DictField(required=True, write_only=True, help_text='请求参数')
+    params = serializers.ListField(required=True, write_only=True, help_text='请求参数')

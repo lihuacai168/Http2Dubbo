@@ -50,8 +50,8 @@ class DubboView(ViewSet):
                 # 所有的节点都不包含服务
                 return Response({'res': f'not exist service: {service} or method: {method}'})
 
-            params: dict = ser.validated_data.get('params')
-            res = conn.invoke(service, method, params)
+            params: list = ser.validated_data.get('params')
+            res = conn.invoke(service, method, *params)
             conn.close()
             return Response(res)
 

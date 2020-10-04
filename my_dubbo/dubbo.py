@@ -25,9 +25,20 @@ class Dubbo(telnetlib.Telnet):
             res.pop()
         return res
 
+    @staticmethod
+    def parser_arg(*args):
+        """
+        >>> parser_arg(1, 3, {"k": "v"})
+        "(1, 3, {'k': 'v'})"
+        :param args:
+        :return:
+        """
+        return json.dumps(str(args).replace("[", '').replace(']', '')).replace('"', '')
+
     # 调用dubbo接口，返回结果，dict类型
-    def invoke(self, service_name, method_name, arg) -> dict:
-        command_str = f"invoke {service_name}.{method_name}({json.dumps(arg)})"
+    def invoke(self, service_name, method_name, *args) -> dict:
+        params = self.parser_arg(*args)
+        command_str = f"invoke {service_name}.{method_name}{params}"
         self._write_cmd(command_str)
         res: list = self._exec_cmd()
         if len(res) == 2:
