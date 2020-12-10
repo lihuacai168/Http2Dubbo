@@ -16,7 +16,6 @@
 ## 3、启动和测试Dubbo服务
 [参考这里](https://github.com/lihuacai168/dubbo-docker.git)
 
-[Telnet调用dubbo命令](http://dubbo.apache.org/zh-cn/docs/user/references/telnet.html)
 
 ## 4、Http接口调用Dubbo服务
 ### 查询Dubbo服务
